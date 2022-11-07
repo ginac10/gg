@@ -1,5 +1,8 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        if k == len(nums):
+            return nums
+        
         dic = defaultdict(int) # {num: frequency}
         for n in nums:
             dic[n] += 1
