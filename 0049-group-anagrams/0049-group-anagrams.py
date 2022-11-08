@@ -1,9 +1,14 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        fin = defaultdict(list) # defaultdict -- same as dict, no err
-        for s in strs:
-            count = [0] * 26 # a ... z
-            for i in s:
-                count[ord(i) - ord('a')] += 1 # ord -- char to int, unicode
-            fin[tuple(count)].append(s) # convert to tuple bc list cannot be key in python
-        return fin.values()
+        anagrams = {} # {"abc": ["bac", "bca"]}
+        if len(strs) == 0:
+            return [[""]]
+        elif len(strs) == 1:
+            return [strs]
+        else:
+            for word in strs:
+                if "".join(sorted(word)) in anagrams.keys():
+                    anagrams[''.join(sorted(word))].append(word)
+                else:
+                    anagrams[''.join(sorted(word))] = [word]
+        return anagrams.values()
