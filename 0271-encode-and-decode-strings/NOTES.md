@@ -1,3 +1,7 @@
+**More clever approach** -- chunked transfer encoding, but not w bytes as leet sol.
+Reminders:
+- can't concatenate int to str
+​
 **Naive Solution (Initial Attempt)**
 ```
 def encode(self, strs: List[str]) -> str:
@@ -22,3 +26,10 @@ temp = ""
 return strs
 ```
 Minor Improvement:
+```
+def encode(self, strs: List[str]) -> str:
+... return str[:len(str) - 1]
+​
+def decode(self, s: str) -> List[str]:
+... return s.split("라")
+```
