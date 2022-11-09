@@ -2,26 +2,23 @@ class Codec:
     def encode(self, strs: List[str]) -> str:
         """Encodes a list of strings to a single string.
         """
-        str = ""
+        sol = ""
         for s in strs:
-            str += s + "라"
-        return str[:len(str) - 1]
-        
+            sol += str(len(s)) + "#" + s # You have to have "#" in case of ##s
+        return sol
 
     def decode(self, s: str) -> List[str]:
         """Decodes a single string to a list of strings.
         """
-        return s.split("라")
-        #strs = []
-        #temp = ""
-        #for c in s:
-            #if c != '라':
-                #temp += c
-            #else:
-                #strs.append(temp)
-                #temp = ""
-        #return strs
-        
+        ans, i = [], 0
+        while i < len(s):
+            j = i
+            while s[j] != "#":
+                j += 1
+            num = int(s[i:j])
+            ans.append(s[j+1:j+1+num])
+            i = j + num + 1
+        return ans
 
 
 # Your Codec object will be instantiated and called as such:
