@@ -15,3 +15,5 @@ class Solution:
                 maxx = a
         return maxx
     
+    # Time complexity is O(n) because single pass. 
+    # Space complexity is O(1).
