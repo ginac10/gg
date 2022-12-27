@@ -1,14 +1,21 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        anagrams = {} # {"abc": ["bac", "bca"]}
-        if len(strs) == 0:
-            return [[""]]
-        elif len(strs) == 1:
-            return [strs]
-        else:
-            for word in strs:
-                if "".join(sorted(word)) in anagrams.keys():
-                    anagrams[''.join(sorted(word))].append(word)
-                else:
-                    anagrams[''.join(sorted(word))] = [word]
-        return anagrams.values()
+        dic = {}
+        for s in strs:
+            temp = [0]*26 #
+            for letter in s:
+                index =  ord(letter) - ord("a") # You must make "a" to int AND subtract it
+                                                # In Python, NOT int("a"), but ord("a")
+                temp[index] = temp[index]+1
+                ##temp = temp[:index] + str(int(temp[index])+1) + temp[index+1:] # Str doesn't support item reassignment
+            temp  = '#'.join(str(x) for x in temp) ## https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string
+            if temp in dic:
+                dic[temp].append(s) #
+            else:
+                dic[temp] = [s]
+        
+        return dic.values() # This cleanly returns the result in []
+                    #result = []
+                    #for v in dic.values():
+                    #    result.append(v)
+                    #return result
