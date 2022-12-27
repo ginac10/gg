@@ -8,10 +8,11 @@ class Solution:
                                                 # In Python, NOT int("a"), but ord("a")
                 temp[index] = temp[index]+1
                 ##temp = temp[:index] + str(int(temp[index])+1) + temp[index+1:] # Str doesn't support item reassignment
-            temp  = '#'.join(str(x) for x in temp) ## https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string ## Need token to split the numbers
+            #temp  = '#'.join(str(x) for x in temp) ## https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string ## Need token to split the numbers
+                # Or, even better, make it a tuple.
             
-            dic[temp].append(s) 
-                # No need to do this
+            dic[tuple(temp)].append(s) 
+                # No need to do this IF you make dic = defaultdict(list)
                     #if temp in dic:
                     #    dic[temp].append(s) #
                     #else:
