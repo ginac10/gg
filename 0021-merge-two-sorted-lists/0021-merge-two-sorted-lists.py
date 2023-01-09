@@ -20,7 +20,7 @@ class Solution:
             
         if not list1:
             tail.next = list2
-        else:
+        elif not list2:
             tail.next = list1
         
         return dummy.next#return tail
